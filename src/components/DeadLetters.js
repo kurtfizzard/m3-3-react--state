@@ -3,11 +3,17 @@ import styled from "styled-components";
 
 import { colors } from "./GlobalStyles";
 
-const DeadLetters = ({}) => {
+const DeadLetters = ({ wrongGuesses }) => {
+  console.log(wrongGuesses);
+  // render the wrongGuesses array as individual elements in a list (letters)
   return (
     <Wrapper>
       <h2>Dead Letters</h2>
-      <List></List>
+      <List>
+        {wrongGuesses.map((element) => {
+          return <Letter>{element}</Letter>;
+        })}
+      </List>
     </Wrapper>
   );
 };

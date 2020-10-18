@@ -1,10 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-
 import { colors } from "./GlobalStyles";
 
-const LetterKey = ({}) => {
-  return <Wrapper>a</Wrapper>;
+const LetterKey = ({ alphabet, usedLetters, keyTrigger }) => {
+  // render a button for each letter of the alphabet
+  return alphabet.map((element) => {
+    return (
+      <Wrapper
+        // if the letter is in usedLetters, disable it
+        disabled={usedLetters.includes(element)}
+        onClick={() => {
+          keyTrigger(element);
+        }}
+      >
+        {element}
+      </Wrapper>
+    );
+  });
 };
 
 const Wrapper = styled.button`

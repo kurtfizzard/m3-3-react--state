@@ -1,7 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const TheWord = ({}) => <Wrapper>____ ____ ____ ____ </Wrapper>;
+const TheWord = ({ word }) => {
+  console.log(word);
+
+  // render empty characters, unless the letter has been guessed, in which case, render the letter
+  return (
+    <Wrapper>
+      {word.revealed.map((element) => {
+        return <Letter>{element ? element : "_"}</Letter>;
+      })}
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.p`
   font-size: 20px;
@@ -15,6 +26,10 @@ const Span = styled.span`
   width: 30px;
   margin: 0 3px;
   text-align: center;
+`;
+
+const Letter = styled.span`
+  margin: 5px;
 `;
 
 export default TheWord;
