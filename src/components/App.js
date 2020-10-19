@@ -79,22 +79,22 @@ const App = () => {
       setWrongGuesses([...dummy]);
       // if the user selected letter is in the randomly selected word, replace the empty character slot(s) with the letter
     } else {
+      // create a variable as a stand in so that we can modify word.revealed without modifying state
+      let dummy = [...word.revealed];
       // convert the string to an array and carry out a function on each of them
       word.str.split("").forEach((element, index) => {
         // if any of elements in the string is equal to letter
         if (element === ltr) {
-          // create a variable as a stand in so that we can modify word.revealed without modifying state
-          let dummy = [...word.revealed];
           // let the empty string at [index] equal the element (which equals the user selected letter)
           dummy[index] = element;
-          // call setWord to modify state and make word.revealed equal to the newly modified stand in
-          setWord({ ...word, revealed: [...dummy] });
-          if (word === word.revealed.toString()) {
-            console.log(word.revealed.toString());
-            handleEndGame(true);
-          }
         }
       });
+      // call setWord to modify state and make word.revealed equal to the newly modified stand in
+      setWord({ ...word, revealed: [...dummy] });
+      console.log(dummy.join(""), word.str);
+      if (dummy.join("") === word.str) {
+        handleEndGame(true);
+      }
     }
   };
 
